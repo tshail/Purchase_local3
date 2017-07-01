@@ -1,5 +1,7 @@
+
 package common_Function;
 
+import java.io.FileInputStream;
 
 import org.apache.poi.sl.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.DataFormatter;
@@ -14,7 +16,7 @@ import org.openqa.selenium.WebElement;
 public class RW
 {
 
-	public static String path="C:\\Users\\MUM\\workspace\\JibeFunctionalTest5\\"; //Workspace-->Project-->excel path
+	public static String path="C:\\Users\\MUM\\workspace\\Purchase_local3\\"; //Workspace-->Project-->excel path
 	
 	
 	
@@ -363,13 +365,16 @@ public static String uploadFile(WebDriver driver, String locatorType, String loc
 	 
 	 {
 	 
+		System.out.println(locatorType);
 	  switch(locatorType)
 	   {
 
 	   case "id":
+		   
 		     WebElement iframe1=driver.findElement(By.id(locatorvalue));
 	          
 	         driver.switchTo().frame(iframe1);
+	         System.out.println(locatorType);
 	          break;
 
 	   case "name":
@@ -429,6 +434,20 @@ public static String uploadFile(WebDriver driver, String locatorType, String loc
 		System.out.println(" alert :" + Alert);
 		Thread.sleep(2000);
 		alert.accept();
+		Thread.sleep(6000);
+		return null;
+		}
+	
+	public static String AlertDismiss(WebDriver driver) throws Exception
+	 
+	
+	{// Alert of "Alert"
+		Alert alert = driver.switchTo().alert();
+		// To read the text from alert
+		String Alert = alert.getText();
+		System.out.println(" alert :" + Alert);
+		Thread.sleep(2000);
+		alert.dismiss();
 		Thread.sleep(6000);
 		return null;
 		}
@@ -512,7 +531,54 @@ public static String uploadFile(WebDriver driver, String locatorType, String loc
 	   return null;
 
 	 }
+	public static String frameSwitchto1(WebDriver driver, String locatorType, String locatorvalue) throws Exception
+	 
+	 {
+	 
+		System.out.println(locatorType);
+	  switch(locatorType)
+	   {
 
+	   case "id":
+		   
+		     WebElement iframe1=driver.findElement(By.id(locatorvalue));
+	          
+	         driver.switchTo().frame(iframe1);
+	         System.out.println(locatorType);
+	          break;
+
+	   case "name":
+		     WebElement iframe2=driver.findElement(By.name(locatorvalue));
+		   
+		     driver.switchTo().frame(iframe2);
+	         break;
+
+	   case "xpath":
+        WebElement iframe3=driver.findElement(By.xpath(locatorvalue));
+		   
+		     driver.switchTo().frame(iframe3);
+	         break;
+	         
+	   case "linkText":
+		     WebElement iframe4=driver.findElement(By.linkText(locatorvalue));
+		   
+		     driver.switchTo().frame(iframe4);
+	         break;
+	         
+	   case "cssSelector":
+		     WebElement iframe5=driver.findElement(By.cssSelector(locatorvalue));
+		   
+		     driver.switchTo().frame(iframe5);
+	         break;
+
+	   }
+
+	   Thread.sleep(1000);
+	   
+	   return null;
+
+	 }
+	
 
 
 
